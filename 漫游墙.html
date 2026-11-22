@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff9ed">
+<title>漫游留言墙 · 万象生活遇</title>
+<link rel="stylesheet" href="home.css">
+<style>
+  .wall { width:min(1100px,calc(100% - 40px)); margin:auto; padding-bottom:44px; line-height:1.6; }
+  .wall-nav { display:flex; justify-content:space-between; align-items:center; min-height:68px; border-bottom:1px solid #c2c9b7; }
+  .wall-nav a { color:#172c2d; font-weight:750; text-underline-offset:4px; }
+  .wall-brand { display:flex; gap:8px; align-items:center; text-decoration:none; font-size:23px; letter-spacing:-.06em; }
+  .wall-brand b { display:grid; place-items:center; width:32px; height:32px; border:1.5px solid #172c2d; border-radius:50%; background:#d9f263; line-height:1; }
+  .wall-intro { display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:175px; margin:23px 0; padding:clamp(16px,3vw,32px); border:1.5px solid #172c2d; border-radius:20px; background:#b4e2f1; box-shadow:3px 4px 0 #172c2d; }
+  .wall-intro h1 { margin:0 0 6px; font-weight:850; font-size:clamp(37px,6vw,74px); letter-spacing:-.085em; line-height:1.1; }
+  .wall-intro p { margin:0; color:#2d4d4c; }
+  .wall-intro img { width:clamp(52px,10vw,115px); height:clamp(90px,12vw,155px); object-fit:contain; mix-blend-mode:multiply; }
+  .wall-grid { display:grid; grid-template-columns:minmax(260px,.68fr) minmax(0,1.32fr); align-items:start; gap:24px; }
+  .wall-form { margin:0; padding:clamp(17px,2.5vw,28px); border:1.5px solid #172c2d; border-radius:17px; background:#fffdf4; }
+  .wall h2 { margin:0 0 8px; font-size:24px; line-height:1.25; letter-spacing:-.04em; }
+  .wall label { display:grid; gap:4px; margin:12px 0; font-size:14px; font-weight:720; }
+  .wall input,.wall textarea { width:100%; padding:9px 10px; border:1.4px solid #81968a; border-radius:9px; background:#fffffc; color:#172c2d; font:inherit; font-weight:450; font-size:16px; }
+  .wall textarea { resize:vertical; min-height:116px; }
+  .wall small,.wall-hint,.wall-status { color:#496055; font-size:13px; }
+  .wall-hint { margin:4px 0 11px; }
+  .wall-status { margin:8px 0 0; min-height:1.4em; }
+  .wall-status[data-error="true"] { color:#973d29; }
+  .wall-controls { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .wall button { color:#172c2d; font-weight:720; cursor:pointer; }
+  .wall button:disabled { opacity:.55; cursor:default; }
+  .wall-submit,.wall-switch { padding:8px 13px; min-height:41px; border-radius:12px; border:1.4px solid #172c2d; background:#d9f263; }
+  .wall-submit { box-shadow:2px 2px 0 #172c2d; }
+  .wall-switch { background:transparent; font-size:13px; }
+  .wall-list-top { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:3px 0 12px; }
+  .wall-list-top h2 { margin:0; }
+  .wall-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:12px; }
+  .wall-note,.wall-empty { margin:0; padding:17px; background:#f4f4d5; border:1.4px solid #526b59; border-radius:15px; overflow-wrap:anywhere; }
+  .wall-note:nth-child(3n+2) { background:#f9d7df; }
+  .wall-note:nth-child(3n) { background:#d5ecf1; }
+  .wall-note header { display:flex; align-items:center; gap:8px; }
+  .wall-note b { font-weight:750; }
+  .wall-note time { display:block; color:#4e6659; font-size:12px; }
+  .wall-note p { margin:11px 0 0; white-space:pre-wrap; }
+  .wall-empty { grid-column:1 / -1; background:#f3f3e8; color:#4c5f53; }
+  .wall-dot { display:grid; place-items:center; flex:none; width:33px; height:33px; border-radius:50%; background:#fbfbef; border:1px solid #446456; font-weight:800; }
+  .wall :focus-visible { outline:3px solid #00858b; outline-offset:3px; }
+  @media(max-width:680px) { .wall { width:calc(100% - 28px); }.wall-grid { grid-template-columns:1fr; gap:20px; }.wall-intro { min-height:130px; }.wall-nav { min-height:58px; }.wall-list { grid-template-columns:1fr; } }
+</style>
+<script src="community.js" defer></script>
+</head>
+<body>
+<main class="wall">
+  <nav class="wall-nav" aria-label="页面导航"><a class="wall-brand" href="index.html"><b aria-hidden="true">✳</b>万象生活遇</a><a href="index.html">回到体验馆</a></nav>
+  <header class="wall-intro"><div><h1>漫游留言墙。</h1><p>留下一条亲自走过的路线，或一家值得停留的小店。</p></div><img src="assets/ip-2.webp" alt=""></header>
+  <div class="wall-grid">
+    <form class="wall-form" id="wall-form">
+      <h2>写条逛街心得</h2><p id="wall-scope" class="wall-hint">正在检查现场留言服务。</p>
+      <label for="wall-name">署名昵称<input id="wall-name" name="nickname" required placeholder="这条建议由谁留下？" autocomplete="off"></label>
+      <label for="wall-text">你的留言<textarea id="wall-text" name="text" rows="4" required placeholder="哪家店适合谁？从哪一层过去更顺路？"></textarea></label>
+      <div class="wall-controls"><button class="wall-submit" id="wall-send" type="submit" disabled>发表留言</button><small id="wall-counter">0 / 240</small></div>
+      <p class="wall-status" id="wall-status" aria-live="polite"></p><button class="wall-switch" id="wall-reconnect" type="button" hidden>重新连接现场留言墙</button>
+    </form>
+    <section aria-labelledby="wall-heading">
+      <div class="wall-list-top"><h2 id="wall-heading">最近的留言</h2><button id="wall-refresh" class="wall-switch" type="button">刷新</button></div>
+      <div id="wall-list" class="wall-list" aria-live="polite"><p class="wall-empty">正在读取留言…</p></div>
+    </section>
+  </div>
+</main>
+</body></html>

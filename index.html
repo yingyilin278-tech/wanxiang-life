@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><link rel="icon" href="assets/ip-8.webp" type="image/webp"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff9ed"><title>万象生活遇 · 商场互动体验馆</title>
+<link rel="stylesheet" href="home.css?v=wanxiang"><link rel="stylesheet" href="journey.css?v=personal-visits-1"><link rel="stylesheet" href="games.css?v=station-choice-1">
+<script defer src="assets/avatars.js"></script><script defer src="vendor/three.min.js"></script><script defer src="vendor/jsQR.js"></script>
+<script defer src="assets/visit-points.js?v=visits-1"></script>
+<script defer src="media.js?v=kitchen-sound"></script><script defer src="games.js?v=station-choice-1"></script><script defer src="journey.js?v=wanxiang"></script><script defer src="home.js?v=kitchen-sound"></script>
+</head><body>
+<main id="home">
+<header class="mast"><div class="mast-inner"><a href="#welcome" class="brand"><span class="brandmark" aria-hidden="true"><i></i><i></i></span><strong>万象生活遇</strong></a>
+<nav aria-label="体验馆导航"><a href="#guide">游玩指南</a><a href="#cast">角色图鉴</a></nav>
+<button class="nav-pass" id="my-trip"><span aria-hidden="true">▤</span> 我的旅程</button></div></header>
+<section class="hero content" id="welcome">
+<div class="intro"><p class="venue"><i aria-hidden="true"></i> 商场互动体验馆</p>
+<h1>万象<br><span class="under">生活遇</span><b class="fullstop" aria-hidden="true">。</b></h1>
+<p class="lead">一个人来找搭子，结伴来就一起选角色。站进多人画框，沿途收集店铺卡，把这一趟写进你们的漫游册。</p>
+<div class="choices" id="doors">
+<button class="door solo" data-entry="solo"><span class="door-people" aria-hidden="true">♙</span>一个人来<span aria-hidden="true">↗</span></button>
+<button class="door group" data-entry="group"><span class="door-people" aria-hidden="true">♧</span>结伴同行<span aria-hidden="true">↗</span></button></div>
+<p class="resume-note" id="home-note" aria-live="polite"></p></div>
+<figure class="exhibit"><div class="art-window" id="art-window"><img class="hero-art" src="assets/installation.webp?v=group2" alt="四位游客在金色油画框前一起摆出胜利姿势，屏幕上四个角色同步回应。"><div class="model-view" id="model-view" hidden></div></div>
+<figcaption><span class="caption-icon" aria-hidden="true">✳</span><span id="art-label">体验馆 · 多人油画框</span><button id="swap-art" aria-pressed="false">查看 3D 展台 <span aria-hidden="true">⤢</span></button></figcaption>
+</figure></section>
+<section class="guide content" id="guide"><div class="section-top"><h2>这趟怎么玩<span>？</span></h2><span class="small-note">从体验馆出发，也回到这里。</span></div>
+<div class="stops">
+<article><div class="stophead"><span class="stopnum">01</span><span class="stopsign" aria-hidden="true">☺</span></div><h3>每人挑一个形象</h3><p>选同行人数，每位成员用自己的昵称和角色出发。</p></article>
+<article><div class="stophead"><span class="stopnum">02</span><span class="stopsign" aria-hidden="true">✌</span></div><h3>站进互动装置</h3><p>捏捏表情，再到手势厨房翻拌意面、颠锅、涮毛肚，最后全队入画。</p><a class="example-link" href="#kitchen">试玩手势厨房 ↗</a></article>
+<article><div class="stophead"><span class="stopnum">03</span><span class="stopsign" aria-hidden="true">⌖</span></div><h3>带提示去收卡</h3><p>每站都有旅途提示词，扫门店码可收下这站的印章和店铺卡。</p><a class="example-link" href="#card-example">预览卡片和提示词 ↗</a></article>
+<article><div class="stophead"><span class="stopnum">04</span><span class="stopsign" aria-hidden="true">✎</span></div><h3>返馆，签个名</h3><p>给玻璃哈口气，写下名字，带走自己的漫游纪念。</p></article>
+</div></section>
+<section class="cast content" id="cast"><div class="section-top"><h2>漫游角色图鉴</h2><span class="small-note">八种形象，队员各自认领。</span></div><div class="cast-stage" id="cast-stage"></div></section>
+<footer class="foot content"><span>万象生活遇 · 商场互动体验馆</span><span><a href="漫游墙.html">漫游留言墙</a><a href="站点码.html">打印站点码</a></span></footer>
+</main><main id="flow" hidden></main>
+<dialog id="trip-dialog" class="trip-dialog"><form method="dialog"><button class="dialog-x" aria-label="关闭">×</button></form><h2>我的旅程</h2><p id="saved-summary"></p><div id="trip-actions"></div></dialog>
+<dialog id="card-example" class="trip-dialog sample-dialog"><form method="dialog"><button class="dialog-x" aria-label="关闭示例">×</button></form><h2>店铺卡示例</h2><div class="sample-card"><span id="sample-mark"></span><b id="sample-name"></b><small id="sample-shop"></small></div><h3>本站旅途提示词</h3><p id="sample-task"></p><p class="sample-note">正式旅程会显示由哪位队员带队。扫码后，可在「我的收藏卡」翻看获得记录。</p></dialog>
+</body></html>
